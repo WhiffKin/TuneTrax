@@ -1,0 +1,93 @@
+.home_page-genre-container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.home_page-song-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.home_page-song {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    flex-shrink: 0;
+    transform: translate(0, 0);
+}
+
+.home_page-song-container-play{
+    display: none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    top: 14px;
+    left: 38px;
+    pointer-events: none;
+}
+
+.home_page-song-image:hover + .home_page-song-container-play {
+    display: block;
+}
+
+.home_page-song-image:hover {
+     box-shadow: 0px 0px 25px -25px black; 
+    
+}
+
+.home_page-song > h5 {
+    margin: 0px;
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.home_page-song-container {
+    display: flex;
+    gap: 5px;
+    justify-content: start;
+    overflow-x: scroll;
+    /* cursor: pointer; */
+}
+
+.home_page-song-container::-webkit-scrollbar{
+    background-color: #EF912B;
+    border-radius: 5px;
+}
+
+.home_page-song-container::-webkit-scrollbar-thumb{
+    background-color: #000433;
+    border-radius: 5px;
+}
+
+.home_page-album-container {
+    display: flex;
+    gap: 5px;
+    justify-content: start;
+    overflow-x: scroll;
+    /* cursor: pointer; */
+}
+
+.home_page-album-container::-webkit-scrollbar{
+    background-color: #EF912B;
+    border-radius: 5px;
+}
+
+.home_page-album-container::-webkit-scrollbar-thumb{
+    background-color: #000433;
+    border-radius: 5px;
+}
+
+

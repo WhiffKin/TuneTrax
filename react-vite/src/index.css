@@ -7,6 +7,10 @@ a, ul, span, button {
     word-wrap: break-word;
 }
 
+a, button {
+    cursor: pointer;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -14,6 +18,10 @@ body {
     background-color: #FFFFAB;
     font-family: "Questrial", sans-serif;
 }
+
+
+
+
 
 .page-container {
     margin: 0 auto;
@@ -53,4 +61,8 @@ body {
     height: 40px;
     margin-left: -10px;
     border-radius: 50%;
+}
+
+#root {
+    padding-bottom: 30px;
 }

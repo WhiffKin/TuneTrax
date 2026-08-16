@@ -8,14 +8,21 @@
     margin-bottom: 10px;
     border-bottom: 2px solid #000433;
     width: 100%;
+    text-align: center;
+    color:#000433;
 }
 
 .upload-form_set > div {
     display: flex;
     gap: 30px;
+    justify-content: center;
 }
 .upload-form_set > div > h3 {
     cursor: pointer;
+    color:#000433;
+    text-align: center;
+    display: flex;
+    
 }
 .upload-form_set .selected {
     text-decoration: underline;
@@ -37,9 +44,24 @@
     
 }
 
+.upload-form_set_form > div > label > input, select {
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 2px 0px;
+    width: fit-content;
+}
+
+.upload-form_set_form > div > label > textarea {
+    resize: none;
+    margin-left: 5px;
+}
+
 .upload-form_set_image {
     width: 200px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .upload-form_set_image img {
     width: 200px;
@@ -58,13 +80,20 @@
 
 .upload-form_set_data button {
     padding: 4px 8px;
-    color: #000433;
+    color: white;
     width: fit-content;
-    border: 2px solid #000433;
+    border: 1px solid #000433;
     border-radius: 5px;
+    cursor: pointer;
+    background-color: #EF3E2B;
 }
 .upload-form_set_button-container {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+}
+
+.album-release-date {
+    border-radius: 5px;
+    border: 1px solid black;
 }

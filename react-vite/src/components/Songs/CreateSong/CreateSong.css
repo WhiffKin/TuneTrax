@@ -13,6 +13,7 @@
     margin-bottom: 10px;
     border-bottom: 2px solid #000433;
     width: 100%;
+    text-align: center;
 }
 .upload-form_song > div{
     display: flex;
@@ -24,7 +25,30 @@
 .upload-form_song_pic {
     width: 200px;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
 }
+
+.upload-song_container-upload-button{
+    display: none;
+}
+
+.upload-song_container-upload-custom-button{
+    cursor: pointer;
+    border: 1.5px solid rgba(0, 4, 51);
+    padding: 20px;
+    border-radius: calc(infinity*1px);
+    background-color: #EF3E2B;
+    font-size:medium;
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
 .upload-form_song_pic img  {
     width: 200px;
     height: 200px;
@@ -44,13 +68,22 @@
     align-items: center;
     width: 100%;
 }
+
+.upload-form_song_data > label > input {
+    border-radius: 5px;
+    border: 1px solid #000433;
+}
 .upload-form_song_data button {
     padding: 4px 8px;
-    color: #000433;
+    color: white;
     width: fit-content;
-    border: 2px solid #000433;
+    border: 1px solid #000433;
     border-radius: 5px;
+    cursor: pointer;
+    background-color: #EF3E2B;
 }
+
+
 .upload-form_song_button-container {
     display: flex;
     justify-content: space-evenly;
@@ -67,4 +100,9 @@
 .submitted-song img{
     width: 100px;
     height: 100px;
+}
+
+.create-song-description{
+    margin-left: 5px;
+    resize: none;
 }

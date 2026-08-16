@@ -47,6 +47,7 @@ def upgrade():
     sa.Column('release_date', sa.Date(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.Column('genre', sa.Enum('Electronic', 'Rock', 'Pop', 'Alternative', 'Hauntology', 'Classical', 'Indie', 'Rap', 'Country', 'Metal', name='genre'), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

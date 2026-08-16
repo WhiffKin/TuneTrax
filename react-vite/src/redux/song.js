@@ -1,6 +1,13 @@
 import { normalizeObj } from "./helpers";
 import {createSelector} from "reselect"
 
+export const selectSongArray = (()=> {
+    return createSelector(
+        state => state.songs.songs,
+        songs => Object.values(songs)
+    )
+})
+
 const GET_SONG = 'songs/GET_SONG';
 const GET_SONGS = 'songs/GET_SONGS';
 const POST_SONG = 'songs/POST_SONG';
@@ -13,7 +20,7 @@ const ADD_LIKE = 'songs/ADD_LIKE';
 const DELETE_LIKE = 'songs/DELETE_LIKE';
 const POST_ALBUM_SONG = 'songs/POST_ALBUM_SONG';
 const CLEAR_ALBUM_SONGS = 'songs/CLEAR_ALBUM_SONGS';
-
+const CLEAR_SONG_STORE = "songs/CLEAR_SONG_STORE"
 
 const getSong = (song) => ({
     type: GET_SONG,
@@ -45,9 +52,9 @@ const postComment = (comment) => ({
     payload: comment
 })
 
-const deleteComment = (commentId) => ({
+const deleteComment = (songId, commentId) => ({
     type: DELETE_COMMENT,
-    payload: commentId
+    payload: {songId, commentId}
 })
 
 const editComment = (comment) => ({
@@ -74,6 +81,10 @@ const clearAlbumSongs = () => ({
     type: CLEAR_ALBUM_SONGS
 })
 
+const clearSongStore = () => ({
+    type: CLEAR_SONG_STORE
+})
+
 // Thunks
 export const thunkGetSong = (songId) => async (dispatch) => {
     const response = await fetch(`/api/songs/${songId}`);
@@ -87,8 +98,21 @@ export const thunkGetSong = (songId) => async (dispatch) => {
     if (data.errors) return data;
 }
 
-export const thunkGetSongs = () => async (dispatch) => {
-    const response = await fetch('/api/songs/')
+export const thunkGetSongPlay = (songId) => async (dispatch) => {
+    const response = await fetch(`/api/songs/${songId}/play`);
+
+    if (response.ok) {
+        const song = await response.json();
+        dispatch(getSong(song));
+        return song;
+    }
+    const data = await response.json();
+    if (data.errors) return data;
+
+}
+
+export const thunkGetSongs = (genres) => async (dispatch) => {
+    const response = await fetch(`/api/songs/?genres=${genres.join("-")}`)
     if (response.ok){
         const songs = await response.json();
         dispatch(getSongs(songs))
@@ -186,7 +210,7 @@ export const thunkDeleteComment = (songId, commentId) => async(dispatch) => {
 
     if(response.ok){
         const delete_comment = await response.json()
-        dispatch(deleteComment(commentId))
+        dispatch(deleteComment(songId, commentId))
         return delete_comment
     } else {
         const data = await response.json();
@@ -197,8 +221,10 @@ export const thunkDeleteComment = (songId, commentId) => async(dispatch) => {
 }
 
 export const thunkEditComment = (songId, comment) => async (dispatch) => {
+    console.log("edit comment is: ", comment)
     const response = await fetch(`/api/songs/${songId}/comments/${comment.id}`, {
         method: "POST",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(comment)
     })
     if(response.ok){
@@ -242,6 +268,10 @@ export const thunkClearAlbumSongs = () => async(dispatch) => {
     dispatch(clearAlbumSongs());
 }
 
+export const thunkClearSongStore = () => async(dispatch) => {
+    dispatch(clearSongStore())
+}
+
 
 const initialState = { songs: {}, postedAlbumSongs: {} }
 
@@ -275,11 +305,12 @@ const songReducer = (state=initialState, action) => {
             newState.songs = { ...state.songs, [action.payload.id]: action.payload}
             return newState;
         case DELETE_COMMENT:
+            const song = state.songs[action.payload.songId]
+            song.comments = song.comments.filter((comment) => action.payload.commentId !== comment.id)
             newState = { ...state }
-            newState.songs = { ...state.songs }
-            console.log('Action song id: ', action.payload)
-            console.log('New state songs is: ', newState.songs)
-            delete newState.songs[action.songId.commentId];
+            
+            newState.songs = { ...state.songs, [song.id] : song }
+            
             return newState;
         case EDIT_COMMENT:
             newState = { ...state, comment: action.comment };
@@ -295,7 +326,9 @@ const songReducer = (state=initialState, action) => {
         case ADD_LIKE:
             newState = {...state};
             newState.songs = {...state.songs, [action.payload.id]: action.payload}
-            return newState;            
+            return newState;
+        case CLEAR_SONG_STORE:
+            return {songs: {}, postedAlbumSongs: {}}            
         default:
             return state;
     }

@@ -7,6 +7,7 @@ import DeletePlaylistModal from "../DeletePlaylistModal";
 import { useState } from "react";
 import "./PlaylistPage.css"
 import { useSongContext } from "../../context/SongPlayerContext";
+import FeatureComingSoonModal from "../FeatureComingSoonModal/FeatureComingSoonModal";
 
 function PlaylistPage() {
     const { playlistId } = useParams();
@@ -135,9 +136,13 @@ function PlaylistPage() {
                     <div className="playlist-body_left-top"> {/* top */}
                         <div>
                             <button onClick={()=>likeClick()} disabled={canLike}>Like</button>
-                            <button onClick={() => alert("Coming soon!")}>Share</button>
+                            <button className="upcoming"> <OpenModalMenuItem
+                                itemText="Share"
+                                modalComponent={<FeatureComingSoonModal />}
+
+                            /></button>
                             {playlist.user.id == sessionUser?.id && <button onClick={() => navigate(`/playlists/${playlist.id}/edit`)}>Edit</button>}
-                            <button onClick={() => alert("Coming soon!")}>Copy Link</button>
+                            <button onClick={() => navigator.clipboard.writeText(`https://tunetrax.onrender.com/playlists/${playlist.id}`)}>Copy Link</button>
                             {playlist.user.id == sessionUser?.id && 
                                 <button>
                                     <OpenModalMenuItem
@@ -161,7 +166,11 @@ function PlaylistPage() {
                                 <NavLink><i className="fa-solid fa-people-group"></i>{playlist.user.follows}</NavLink>
                                 <NavLink><i className="fa-solid fa-record-vinyl"></i>{playlist.user.songs?.length}</NavLink>
                             </div>
-                            <button onClick={()=>window.alert("Feature coming soon")}><i className="fa-solid fa-user-plus"></i> Follow</button>
+                            <button className="upcoming follow-button"> <i className="fa-solid fa-user-plus" /><div className="follow-button-text"><OpenModalMenuItem
+                                itemText={"Follow"}
+                                modalComponent={<FeatureComingSoonModal />}
+
+                            /></div></button>
                         </div>
                         <div className="playlist-body_left-bottom_playlist-details"> {/* right side */}
                             <span className="playlist-body_left-bottom_playlist-details_body">{playlist.body}</span>

@@ -6,6 +6,8 @@
      background-color: #000433;
      border-top: 2px solid #EF912B;
      padding: 10px 0 10px 0;
+     z-index: 10;
+     
 }
 
 .rhap_main {
@@ -44,4 +46,6 @@
      width: 30px;
      height: 30px;
      font-size: x-large;
+     cursor: pointer;
+     -webkit-text-stroke: 1px #EF3E2B;
 }

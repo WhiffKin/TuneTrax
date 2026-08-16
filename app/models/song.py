@@ -32,13 +32,22 @@ class Song(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
+    def toDictHomePage(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "genre": self.genre.name,
+            "song_pic": self.cascade_song_picture(),
+            "song_link":self.song_link
+        }
+
     def toDictLimited(self):
         return {
             "id":self.id,
             "title":self.title,
             "genre":self.genre.name,
             "song_link":self.song_link,
-            "song_pic":self.song_pic,
+            "song_pic": self.cascade_song_picture(),
             "username":self.user.username,
             "likes":len(self.likes)
         }
@@ -48,7 +57,7 @@ class Song(db.Model):
             "id": self.id,
             "title": self.title,
             "song_link": self.song_link,
-            "song_pic": self.song_pic,
+            "song_pic": self.cascade_song_picture(),
             "body": self.body,
             "genre": self.genre.name,
             "visibility": self.visibility,
@@ -60,8 +69,15 @@ class Song(db.Model):
             "playlists": [playlist.playlist_dict() for playlist in self.playlists],
             "likes": len(self.likes),
             "comments": [comment.comment_dict() for comment in self.comments],
-            "user": self.user.public_user_dict()
+            "user": self.user.toDictLimited()
         }
+    
+    def cascade_song_picture(self):
+        if self.song_pic:
+            return self.song_pic
+        if len(self.albums):
+            return self.albums[0].album_pic
+        return "No Image"
 
     # RELATIONSHIPS: 
     # Many to Many

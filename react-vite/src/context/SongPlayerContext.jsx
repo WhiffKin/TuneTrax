@@ -34,7 +34,12 @@ export default function SongPlayerContext({children}) {
     const songTime_ss = sessionStorage.getItem("song time")
     
     if(songs_ss) setSongs(JSON.parse(songs_ss)) 
-    else setSongs([])
+    else setSongs([{
+      songLink: "https://tunetrax-songs.s3.us-west-2.amazonaws.com/password-infinity-123276.mp3",
+      songPic: "https://tunetrax-pictures.s3.us-west-2.amazonaws.com/18-48-26-846_200x200.jpg",
+      songName: "Password Infinity",
+      songId: 21
+  }])
 
     if(prevSongs_ss) setPrevSongs(JSON.parse(prevSongs_ss)) 
     else setPrevSongs([])

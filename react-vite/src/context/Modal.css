@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20;
 }
 
 #modal-background {
@@ -15,7 +16,8 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  backdrop-filter: grayscale(25%) blur(2px);
 }
 #modal-content * {
   color: #EF3E2B;

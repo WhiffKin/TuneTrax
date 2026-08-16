@@ -1,0 +1,18 @@
+button {
+    width: 100px;
+}
+
+.profile-button {
+  font-size: 30px; 
+  color: #EF3E2B;
+  width: 100px;
+}
+
+.profile-dropdown {
+    background-color: rgba(0, 4, 51, .25);
+    
+}
+
+#profile-button-pic{
+  height: 30px;
+}

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    flex-direction: column;
     padding: 40px;
     margin: 20px auto;
     height: fit-content;
@@ -15,4 +15,28 @@
 
 .upload-form_container p {
     color: #EF3E2B;
+}
+
+.upload-form_container h2{
+    color: #EF3E2B;
+    text-align: center;
+}
+
+/* .upload-form_container input{
+    color: #EF3E2B;
+} */
+
+.upload-form_container-upload-button{
+    display: none;
+}
+
+.upload-form_container-upload-custom-button{
+    cursor: pointer;
+    border: 1.5px solid rgba(0, 4, 51);
+    padding: 20px;
+    border-radius: calc(infinity*1px);
+    background-color: #EF3E2B;
+    font-size:medium;
+    color: white;
+    width: fit-content;
 }

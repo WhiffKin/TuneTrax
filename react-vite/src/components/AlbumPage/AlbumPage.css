@@ -13,6 +13,12 @@
     padding: 20px;
 }
 
+.album-header-default-pic {
+    width: 360px;
+    height: 360px;
+    margin: 20px;
+}
+
 .album-header_data {
     display: flex;
     flex-direction: column;
@@ -110,6 +116,10 @@
     padding: 0 0 5px 0;
     margin: 0 0 15px 0;
 }
+
+.album-body_left-top > div > button {
+    cursor: pointer;
+}
 .album-body_left-top > div {
     color: #000433;
     display: flex;
@@ -169,6 +179,7 @@
 
     padding: 5px;
     height: 50px;
+    cursor: pointer;
 }
 .album-body_left-bottom_song-details:hover {
     transition: background-color .1s;
@@ -207,7 +218,7 @@
     gap: 10px;
     height: 80px;
 }
-.album-body_right_container_set img {
+.album-body_right_container_set img, .album-body_right_container_set-default {
     cursor: pointer;
     height: 50px;
     width: 50px;
@@ -219,4 +230,19 @@
 .album-body_right_container_likes {
     display: flex;
     padding: 5px 15px;
+}
+
+.upcoming{
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.follow-button {
+    cursor: pointer;
+    display: inline-flex;
+    border: 0.5px solid rgb(128, 128, 128);
+}
+
+.follow-button-text{
+    margin-left: 5px;
 }

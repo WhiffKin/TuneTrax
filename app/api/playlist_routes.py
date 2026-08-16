@@ -24,6 +24,9 @@ def delete_playlist_by_id(id):
     if user.id != playlist.user.id:
         return { "message": "Forbidden."}, 403
 
+    if playlist.playlist_pic:
+        s3.remove_file_from_s3(playlist.playlist_pic)
+        
     db.session.delete(playlist)
     db.session.commit()
     

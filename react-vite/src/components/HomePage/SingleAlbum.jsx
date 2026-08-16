@@ -9,14 +9,21 @@ function SingleAlbum({ album }) {
             res.push(songs[i]);
         return res;
     }
-    console.log(album)
+    if(!album && !album?.id){
+        return;
+    }
+  
+    console.log("album is: ", album)
+
     return (
         <div className="single-album-container">
             <Link to={`/albums/${album.id}`}>
-                {album.album_pic ? <img src={album.album_pic} alt={`${album.title} album picture`} className="single-album-album"/> : 
+                {album.album_pic !== "No Image" ? <img src={album.album_pic} alt={`${album.title} album picture`} className="single-album-album"/> : 
                                    <div className="default-pic album-pic"/>}
             </Link>
             <div >
+                <h3>{album.title}</h3>
+                <div className="first-five-songs-wrapper">
                 {firstFiveSongs(album.songs).map(song => (
                     <div key={song.id} className="single-album-image-text">
                         <Link to={`/songs/${song.id}`}>
@@ -25,6 +32,8 @@ function SingleAlbum({ album }) {
                         </Link>
                     </div>
                 ))}
+                </div>
+                <h5><i className="fa-solid fa-heart"></i> {album.likes} | Trax: {(album.songs.length)} | {album.release_date} | {album.user.username} </h5>
             </div>
         </div>
     )

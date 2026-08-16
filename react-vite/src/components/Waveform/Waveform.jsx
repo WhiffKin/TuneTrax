@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import WaveSurfer from 'wavesurfer.js'
 import { useSongContext } from '../../context/SongPlayerContext'
+import './Waveform.css'
 
 const Waveform = ({ audio }) => {
     const containerRef = useRef()
@@ -25,6 +26,7 @@ const Waveform = ({ audio }) => {
             progressColor: ["#EF912B", "#EF3E2B"],
             waveColor: ["#FFFFFF", "#FFFFAB"],
             cursorColor: "#000433",
+            zIndex: -1,
         })
         waveSurfer.load(audio.song_link)
 
@@ -36,7 +38,7 @@ const Waveform = ({ audio }) => {
         }
     }, [audio])
 
-    return <div id={`waveSurfer_${audio.id}`} ref={containerRef} />
+    return <div id={`waveSurfer_${audio.id}`} ref={containerRef} style={{zIndex:-1}}/>
 }
 
 Waveform.propTypes = {

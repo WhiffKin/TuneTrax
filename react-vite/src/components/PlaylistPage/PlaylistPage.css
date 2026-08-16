@@ -121,6 +121,7 @@
     border: 1.5px solid rgba(0, 4, 51, .3);
     border-radius: 5px;
     padding: 1px 5px;
+    cursor: pointer;
 }
 
 .playlist-body_left-bottom {
@@ -153,6 +154,7 @@
     flex-direction: column;
     width: 100%;
     border-bottom: 1.5px solid rgba(0, 4, 51, .25);
+    cursor: pointer;
 }
 
 .playlist-body_left-bottom_playlist-details_body {

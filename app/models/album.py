@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .song import Genre
 
 class Album(db.Model):
     __tablename__ = 'albums'
@@ -13,6 +14,7 @@ class Album(db.Model):
     body = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     release_date = db.Column(db.Date, nullable=False)
+    genre = db.Column(db.Enum(Genre))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
@@ -37,7 +39,9 @@ class Album(db.Model):
             "album_pic":self.album_pic,
             "release_date":self.release_date.strftime("%Y-%m-%d"),
             "user":self.user.toDictAlbum(),
-            "songs":[song.toDictLimited() for song in self.songs],
+            "songs":[song.toDictHomePage() for song in self.songs],
+            "likes":len(self.likes),
+            "genre": self.genre.name
         }
 
     # RELATIONSHIPS: 
@@ -45,7 +49,8 @@ class Album(db.Model):
     songs = db.relationship(
         "Song",
         secondary="album_songs",
-        back_populates="albums"
+        back_populates="albums",
+        cascade="all, delete"
     )
     likes = db.relationship(
         "User",

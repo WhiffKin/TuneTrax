@@ -1,0 +1,46 @@
+.signup-form{
+    display: flex;
+}
+
+.signup-form > label > input, textarea {
+    border-radius:10px;
+    padding: 5px;
+    border: 1px solid rgba(37,37,77,1);
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* .log-in-wrapper {
+    list-style: none;
+    text-decoration: underline;
+    color: rgba(37,37,77,1);
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+} */
+
+.signup-form > button {
+    margin-left: 2px;
+    cursor: pointer;
+    border: 1.5px solid rgba(0, 4, 51) !important;
+    gap:0px;
+    border-radius: calc(infinity * 1px);
+    background-color:#EF3E2B;
+    font-size: medium;
+    color: white !important;
+}
+
+.log-in-button{
+    list-style: none;
+    margin-left: 2px;
+    cursor: pointer;
+    border: 1.5px solid rgba(0, 4, 51) !important;
+    gap:0px;
+    border-radius: calc(infinity * 1px);
+    background-color:#EF3E2B;
+    font-size: medium;
+    color: white !important;
+    padding: 5px;
+}

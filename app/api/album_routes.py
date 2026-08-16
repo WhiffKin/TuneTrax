@@ -25,6 +25,14 @@ def delete_album_by_id(id):
     if user.id != album.user.id:
         return { "message": "Forbidden."}, 403
 
+    if album.album_pic:
+        s3.remove_file_from_s3(album.album_pic)
+    
+    for song in album.songs:
+        if song.song_pic:
+            s3.remove_file_from_s3(song.song_pic)
+        s3.remove_file_from_s3(song.song_link)
+        
     db.session.delete(album)
     db.session.commit()
     
@@ -59,7 +67,12 @@ def update_album(id):
 
 @album_routes.route("/")
 def all_albums():
-    albums = Album.query.all()
+    pagination = request.args.get("genres").rsplit('-')
+    if pagination:
+        albums = Album.query.filter(Album.genre.in_(pagination)).all()
+    else:
+        albums = Album.query.all()   
+    
     return {
         "albums":[album.toDictLimited() for album in albums]
     }
@@ -76,8 +89,18 @@ def create_album():
         #post songs
         songStr = form.data["songs"]
         songs = []
+        song_genres = {}
+        genre = ""
+        
         for songId in songStr.split(","):
-            songs.append(Song.query.get(songId))
+            song = Song.query.get(songId)
+            if song_genres[song.genre.name]:
+                song_genres[song.genre.name] += 1
+            else:
+                song_genres[song.genre.name] = 1
+            if not genre or song_genres[genre] < song_genres[song.genre.name]:
+                genre = song.genre.name
+            songs.append(song)
 
         payload = Album(
             title=form.data["title"],
@@ -85,7 +108,8 @@ def create_album():
             body=form.data["body"],
             user=user,
             release_date=dt.strptime(form.data["release_date"], "%Y-%m-%d"),
-            songs=songs
+            songs=songs,
+            genre=genre
         )
         
         db.session.add(payload)

@@ -41,10 +41,19 @@ def post_song(songForm):
 #Get all song routes
 @song_routes.route('/')
 def songs():
-    songs = Song.query.all()
-    print("in songs route")
-    return {song.id:song.song_dict() for song in songs}
+    pagination = request.args.get("genres").rsplit('-')
+    if pagination:
+        songs = Song.query.filter(Song.genre.in_(pagination)).all()
+    else:
+        songs = Song.query.all()    
+    return {song.id:song.toDictHomePage() for song in songs}
 
+#Get single song and play it
+@song_routes.route('/<int:id>/play')
+def single_song_play(id):
+    song = Song.query.get(id)
+
+    return song.toDictLimited()
 
 #Get a single song
 @song_routes.route('/<int:id>')
@@ -104,7 +113,10 @@ def delete_song(id):
     if not song:
         return {"Error": "Song not found"}, 404
 
+    if song.song_pic:
+        s3.remove_file_from_s3(song.song_pic)
     
+    s3.remove_file_from_s3(song.song_link)
 
     db.session.delete(song)
     db.session.commit()
@@ -156,15 +168,18 @@ def edit_song_comment(_id, c_id):
 
     comment = Comment.query.get(c_id)
     form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
     
     if form.validate_on_submit() and comment.user_id == current_user.id:
+        print("form data is: ", form.data)
         comment.comment = form.data['comment']
         comment.updated_at = datetime.utcnow()
         db.session.add(comment)
         db.session.commit()
         return comment.comment_dict()
     else:
-        return {"Error": "Could not edit comment"}
+        return {"Error": form.errors}
 
 
 # Add a Like

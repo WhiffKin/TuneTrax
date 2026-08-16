@@ -40,15 +40,15 @@ def album_seed_data(all_songs, all_users):
     album38 = Album(title="The Reason", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Hoobastank+-+The+Reason.jpg", body="Album for The Reason", user_id=4, release_date=datetime.strptime("2020-07-11", "%Y-%m-%d"), songs=[all_songs[37]])
     album39 = Album(title="Did you know that there's a tunnel under Ocean Blvd", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Lana+Del+Rey+-+Let+The+Light+In.jpg", body="Album for Let The Light In", user_id=4, release_date=datetime.strptime("2020-10-29", "%Y-%m-%d"), songs=[all_songs[38]])
     album40 = Album(title="Born To Die", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Lana+Del+Rey+-+Summertime+Sadness.jpg", body="Album for Summertime Sadness", user_id=4, release_date=datetime.strptime("2014-03-06", "%Y-%m-%d"), songs=[all_songs[39]])
-    album41 = Album(title="N/A", album_pic="", body="Album for Knocked Off My Feet", user_id=5, release_date=datetime.strptime("2008-01-22", "%Y-%m-%d"), songs=[all_songs[40]])
+    album41 = Album(title="N/A", album_pic="No Image", body="Album for Knocked Off My Feet", user_id=5, release_date=datetime.strptime("2008-01-22", "%Y-%m-%d"), songs=[all_songs[40]])
     album42 = Album(title="Rigged", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Chelle+Ives+-+Elasticity.jpg", body="Album for Elasticity", user_id=5, release_date=datetime.strptime("2010-10-24", "%Y-%m-%d"), songs=[all_songs[41]])
     album43 = Album(title="Sumerian Paradise", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Dew+Of+Light+-+Sumerian+Paradise.jpg", body="Album for Sumerian Paradise", user_id=5, release_date=datetime.strptime("2021-06-04", "%Y-%m-%d"), songs=[all_songs[42]])
     album44 = Album(title="Epoch", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Dye+O+-+Epoch.jpg", body="Album for Bloom", user_id=5, release_date=datetime.strptime("2021-02-20", "%Y-%m-%d"), songs=[all_songs[43]])
     album45 = Album(title="Purple Voyager", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/ELFL+-+Purple+Voyager+Album.jpg", body="Album for Purple Voyager", user_id=5, release_date=datetime.strptime("2021-12-21", "%Y-%m-%d"), songs=[all_songs[44]])
     album46 = Album(title="Transhumanism", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/ELFL+-+Trans-Human-Ism.jpg", body="Album for Sunstorm", user_id=5, release_date=datetime.strptime("2019-08-17", "%Y-%m-%d"), songs=[all_songs[45]])
     album47 = Album(title="Butterfly", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Lofive+-+Butterfly.jpg", body="Album for Butterfly", user_id=5, release_date=datetime.strptime("2018-07-19", "%Y-%m-%d"), songs=[all_songs[46]])
-    album48 = Album(title="Revised Beginning", album_pic="", body="Album for Reversed Beginning", user_id=5, release_date=datetime.strptime("2017-07-14", "%Y-%m-%d"), songs=[all_songs[47]])
-    album49 = Album(title="N/A", album_pic="", body="Album for Fight It One More Night", user_id=5, release_date=datetime.strptime("2009-10-19", "%Y-%m-%d"), songs=[all_songs[48]])
+    album48 = Album(title="Revised Beginning", album_pic="No Image", body="Album for Reversed Beginning", user_id=5, release_date=datetime.strptime("2017-07-14", "%Y-%m-%d"), songs=[all_songs[47]])
+    album49 = Album(title="N/A", album_pic="No Image", body="Album for Fight It One More Night", user_id=5, release_date=datetime.strptime("2009-10-19", "%Y-%m-%d"), songs=[all_songs[48]])
     album50 = Album(title="Fast Life", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/Uygar+Duzgun+-+Trapped+In+Time.jpg", body="Album for Trapped in Time", user_id=5, release_date=datetime.strptime("2021-05-29", "%Y-%m-%d"), songs=[all_songs[49]])
     album51 = Album(title="Classical Greatest Hits", album_pic="https://whiffkin-tunetrax-songs.s3.amazonaws.com/classical-greatest-hits.jpg", body="Classical Greatest Hits", user_id=6, release_date=datetime.strptime("2018-06-20", "%Y-%m-%d"), songs=[*all_songs[50:60]])
     album61 = Album(title="Soundtrack for 'Spider-Man: Into the Spider-Verse'", album_pic="https://group-project-kai-album.s3.us-west-1.amazonaws.com/ab67616d0000b273e2e352d89826aef6dbd5ff8f.jpg", body="Album for Sunflower", user_id=7, release_date=datetime.strptime("2019-10-12", "%Y-%m-%d"), songs=[all_songs[60]])
@@ -71,16 +71,17 @@ def album_seed_data(all_songs, all_users):
     album78 = Album(title="Save Me, San Francisco", album_pic="https://group-project-kai-album.s3.us-west-1.amazonaws.com/ab67616d0000b2736ff8bc258e3ebc835ffe14ca.jpg", body="Album for Hey Soul Sister", user_id=8, release_date=datetime.strptime("2011-07-08", "%Y-%m-%d"), songs=[all_songs[77]])
     album79 = Album(title="Doo-Wops & Hooligans", album_pic="https://group-project-kai-album.s3.us-west-1.amazonaws.com/ab67616d0000b273f6b55ca93bd33211227b502b.jpg", body="Album for The Lazy Song", user_id=8, release_date=datetime.strptime("2017-03-21", "%Y-%m-%d"), songs=[all_songs[78]])
     album80 = Album(title="Ocean Eyes", album_pic="https://group-project-kai-album.s3.us-west-1.amazonaws.com/ab67616d0000b273785d4e702802da500fc78b32.jpg", body="Album for Fireflies", user_id=8, release_date=datetime.strptime("2023-02-20", "%Y-%m-%d"), songs=[all_songs[79]])
-    album81 = Album(title="Country Greatest Hits", album_pic="", body="Country Greatest Hits", user_id=9, release_date=datetime.strptime("2003-08-12", "%Y-%m-%d"), songs=[*all_songs[80:90]])
+    album81 = Album(title="Country Greatest Hits", album_pic="No Image", body="Country Greatest Hits", user_id=9, release_date=datetime.strptime("2003-08-12", "%Y-%m-%d"), songs=[*all_songs[80:90]])
     album82 = Album(title="Death of the Chosen Few", album_pic="https://tunetrax.s3.us-east-2.amazonaws.com/death-of-chosen-few-album.jpg", user_id=10, release_date=datetime.strptime("2016-07-07", "%Y-%m-%d"), songs=[*all_songs[90:97]])
     album83 = Album(title="True Defiance", album_pic="https://tunetrax.s3.us-east-2.amazonaws.com/demon-hunter-true-defiance.jpg", user_id=10, release_date=datetime.strptime("2019-05-21", "%Y-%m-%d"), songs=[*all_songs[97:99]])
-    album84 = Album(title="N/A", album_pic="", user_id=10, release_date=datetime.strptime("2013-07-11", "%Y-%m-%d"), songs=[all_songs[99]])
+    album84 = Album(title="N/A", album_pic="No Image", user_id=10, release_date=datetime.strptime("2013-07-11", "%Y-%m-%d"), songs=[all_songs[99]], genre="Metal")
     
     all_albums = [album1, album2, album3, album4, album5, album6, album7, album8, album9, album10, album11, album12, album13, album14, album15, album17, album18, album19, album20, album21, album22, album23, album24, album25, album26, album27, album28, album29, album30, album31, album32, album36, album37, album38, album39, album40, album41, album42, album43, album44, album45, album46, album47, album48, album49, album50, album51, album61, album62, album63, album64, album65, album66, album67, album68, album69, album70, album71, album72, album73, album74, album75, album76, album77, album78, album79, album80, album81, album82, album83, album84]
     
     for album in all_albums:
         album.user = all_users[album.user_id]
         album.likes = sample(all_users, randint(0, len(all_users)))
+        album.genre = album.songs[0].genre.name
 
     db.session.add_all(all_albums)
     db.session.commit()
